@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var webView: UIWebView!
-    @IBAction func goTo(sender: AnyObject) {
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         urlTextField.resignFirstResponder()
         var url = urlTextField.text
 
@@ -30,7 +31,10 @@ class ViewController: UIViewController {
     
         let req = NSURLRequest(URL: NSURL.URLWithString(url))
         webView.loadRequest(req)
+
+        return true
     }
+
     @IBAction func goForward(sender: AnyObject) {
         webView.goForward()
     }
@@ -40,6 +44,7 @@ class ViewController: UIViewController {
                             
     override func viewDidLoad() {
         super.viewDidLoad()
+        urlTextField.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
 
