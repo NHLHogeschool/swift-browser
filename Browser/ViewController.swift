@@ -15,17 +15,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         urlTextField.resignFirstResponder()
         var url = urlTextField.text
-
-        let regex = NSRegularExpression(pattern:"^https?://",
-            options:nil,
-            error:nil)
-
-        let match = regex.numberOfMatchesInString(url,
-            options:nil,
-            range:NSRange(location:0,
-                          length:countElements(url)))
-
-        if match < 1 {
+        
+        if !url.hasPrefix("http") {
             url = "http://\(url)"
         }
     
