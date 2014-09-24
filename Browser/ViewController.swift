@@ -12,27 +12,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var webView: UIWebView!
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        urlTextField.resignFirstResponder()
-        var url = urlTextField.text
-        
-        if !url.hasPrefix("http") {
-            url = "http://\(url)"
-        }
-    
-        let req = NSURLRequest(URL: NSURL.URLWithString(url))
-        webView.loadRequest(req)
-
-        return true
-    }
-
     @IBAction func goForward(sender: AnyObject) {
         webView.goForward()
     }
     @IBAction func goBack(sender: AnyObject) {
         webView.goBack()
     }
-                            
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        urlTextField.resignFirstResponder()
+        var url = urlTextField.text
+
+        if !url.hasPrefix("http") {
+            url = "http://\(url)"
+        }
+
+        let req = NSURLRequest(URL: NSURL.URLWithString(url))
+        webView.loadRequest(req)
+
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         urlTextField.delegate = self
@@ -44,4 +44,3 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
 }
-
