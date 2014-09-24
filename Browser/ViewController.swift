@@ -18,6 +18,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func goBack(sender: AnyObject) {
         webView.goBack()
     }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return false
+    }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         urlTextField.resignFirstResponder()
